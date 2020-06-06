@@ -1,0 +1,1 @@
+{"version":3,"file":"InverseComparable.js","sourceRoot":"","sources":["../../src/compare/InverseComparable.ts"],"names":[],"mappings":";;AAEA;IAGI,2BAAoB,UAAyB;QACzC,IAAI,CAAC,UAAU,GAAG,UAAU,CAAA;IAChC,CAAC;IAEM,mCAAO,GAAd,UAAgB,CAAI,EAAE,CAAI;QACtB,OAAO,IAAI,CAAC,UAAU,CAAC,OAAO,CAAC,CAAC,EAAE,CAAC,CAAC,GAAG,CAAC,CAAC,CAAA;IAC7C,CAAC;IACL,wBAAC;AAAD,CAAC,AAVD,IAUC;AAVY,8CAAiB"}

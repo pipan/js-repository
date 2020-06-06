@@ -1,0 +1,1 @@
+{"version":3,"file":"ComparableFn.js","sourceRoot":"","sources":["../../src/compare/ComparableFn.ts"],"names":[],"mappings":";;AAEA;IAGI,sBAAoB,EAA0B;QAC1C,IAAI,CAAC,EAAE,GAAG,EAAE,CAAA;IAChB,CAAC;IAEM,8BAAO,GAAd,UAAgB,CAAI,EAAE,CAAI;QACtB,OAAO,IAAI,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAA;IACxB,CAAC;IACL,mBAAC;AAAD,CAAC,AAVD,IAUC;AAVY,oCAAY"}
