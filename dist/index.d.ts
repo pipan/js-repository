@@ -27,3 +27,8 @@ export { Observables } from './Observables';
 export { Channels } from './Channels';
 export { Repository } from './repository/structure/Repository';
 export { SimpleRepository } from './repository/structure/SimpleRepository';
+export { QueryBuilder } from './repository/query/QueryBuilder';
+export { QueryResult } from './repository/query/QueryResult';
+export { ListQueryResult } from './repository/query/ListQueryResult';
+export { PropertyQueryResult } from './repository/query/PropertyQueryResult';
+export { MapQueryResult } from './repository/query/MapQueryResult';
