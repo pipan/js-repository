@@ -1,6 +1,6 @@
 import 'ts-jest'
-import { Repository, SimpleRepository } from '../../src';
-import { Identifiable } from '../../src/identify/Identifiable';
+import { Repository, SimpleRepository } from '../../src'
+import { Identifiable } from '../../src/identify/Identifiable'
 
 class Entity implements Identifiable {
     public id: string
@@ -26,7 +26,7 @@ test("query property - empty repository - result undefined", () => {
         })
 
     expect(result).toBeUndefined()
-});
+})
 
 test("query property - insert item - calls callback", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -40,7 +40,7 @@ test("query property - insert item - calls callback", () => {
     repository.insert(new Entity('1', 'test'))
 
     expect(result.name).toEqual('test')
-});
+})
 
 test("query property - replace item - calls callback", () => {
     const repository: Repository<Entity> = new SimpleRepository()
@@ -55,7 +55,7 @@ test("query property - replace item - calls callback", () => {
     repository.insert(new Entity('1', 'value'))
 
     expect(result.name).toEqual('value')
-});
+})
 
 test("query property - remove item - calls callback", () => {
     const repository: Repository<Entity> = new SimpleRepository()
@@ -70,7 +70,7 @@ test("query property - remove item - calls callback", () => {
     repository.remove(new Entity('1', 'test'))
 
     expect(result).toBeUndefined()
-});
+})
 
 test("query property - insert item with different id - does not call callback", () => {
     const repository: Repository<Entity> = new SimpleRepository()
@@ -85,7 +85,7 @@ test("query property - insert item with different id - does not call callback", 
     repository.insert(new Entity('2', 'two'))
 
     expect(result.name).toEqual('test')
-});
+})
 
 test("query property - remove item with different id - does not call callback", () => {
     const repository: Repository<Entity> = new SimpleRepository()
@@ -101,4 +101,4 @@ test("query property - remove item with different id - does not call callback", 
     repository.remove(new Entity('2', 'two'))
 
     expect(result.name).toEqual('test')
-});
+})

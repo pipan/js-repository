@@ -1,6 +1,6 @@
 import { Change } from "../../change/Change"
 import { SimpleChange } from "../../change/SimpleChange"
-import { ObjectPropertyAdapter } from "./ObjectPropertyAdapter"
+import { ObjectPropertyAdapter } from "../adapter/ObjectPropertyAdapter"
 import { Adaptable, Pipable } from "@wildebeest/observable"
 
 export class PropertyEqualsFilter implements Pipable<Change<any>> {

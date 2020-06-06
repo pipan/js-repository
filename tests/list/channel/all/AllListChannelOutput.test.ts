@@ -1,6 +1,6 @@
 import 'ts-jest'
-import { ListChannel, Channels, Comparables } from '../../../../src';
-import { Adaptable } from '@wildebeest/observable';
+import { ListChannel, Channels, Comparables } from '../../../../src'
+import { Adaptable } from '@wildebeest/observable'
 
 class UniqueAdapter implements Adaptable<string, string> {
     public adapt (item: string): string {
@@ -20,7 +20,7 @@ test.each(instances)("(%#) empty channel - get - returns empty array", (channeLF
     const result: Array<string> = channel.get()
 
     expect(result).toEqual([])
-});
+})
 
 test.each(instances)("(%#) filled channel in constructor - get - returns filled array", (channeLFactory) => {
     const channel: ListChannel<string> = channeLFactory(['test'])
@@ -29,4 +29,4 @@ test.each(instances)("(%#) filled channel in constructor - get - returns filled 
 
     expect(result.length).toEqual(1)
     expect(result[0]).toEqual('test')
-});
+})

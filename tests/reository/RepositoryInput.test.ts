@@ -1,6 +1,6 @@
 import 'ts-jest'
-import { Repository, SimpleRepository } from '../../src';
-import { Identifiable } from '../../src/identify/Identifiable';
+import { Repository, SimpleRepository } from '../../src'
+import { Identifiable } from '../../src/identify/Identifiable'
 
 class Entity implements Identifiable {
     public id: string
@@ -23,7 +23,7 @@ test("empty repositar - insert item - adds one item to repository", () => {
     const result = repository.get()
 
     expect(result.length).toEqual(1)
-});
+})
 
 test("empty repositar - insert all items - adds two items to repository", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -35,7 +35,7 @@ test("empty repositar - insert all items - adds two items to repository", () => 
     const result = repository.get()
 
     expect(result.length).toEqual(2)
-});
+})
 
 test("empty repositar - insert all items same id - adds last item to repository", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -48,7 +48,7 @@ test("empty repositar - insert all items same id - adds last item to repository"
 
     expect(result.length).toEqual(1)
     expect(result[0].name).toEqual('two')
-});
+})
 
 test("filled repositar - remove item by reference - removes first item", () => {
     const item: Entity = new Entity('1', 'one')
@@ -63,7 +63,7 @@ test("filled repositar - remove item by reference - removes first item", () => {
     const result = repository.get()
 
     expect(result.length).toEqual(1)
-});
+})
 
 test("filled repositar - remove item by identity - removes first item", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -77,7 +77,7 @@ test("filled repositar - remove item by identity - removes first item", () => {
     const result = repository.get()
 
     expect(result.length).toEqual(1)
-});
+})
 
 test("filled repositar - remove all items by identity - removes all items", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -94,7 +94,7 @@ test("filled repositar - remove all items by identity - removes all items", () =
     const result = repository.get()
 
     expect(result.length).toEqual(0)
-});
+})
 
 test("filled repositar - remove all items including non existing - removes all existing items", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -112,7 +112,7 @@ test("filled repositar - remove all items including non existing - removes all e
     const result = repository.get()
 
     expect(result.length).toEqual(1)
-});
+})
 
 test("filled repositar - clear - removes all items", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -126,7 +126,7 @@ test("filled repositar - clear - removes all items", () => {
     const result = repository.get()
 
     expect(result.length).toEqual(0)
-});
+})
 
 test("filled repositar - setAll - sets all values to new list", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -142,7 +142,7 @@ test("filled repositar - setAll - sets all values to new list", () => {
     const result = repository.get()
 
     expect(result.length).toEqual(1)
-});
+})
 
 test("filled repositar - setAll with empty array - clears repository", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -156,4 +156,4 @@ test("filled repositar - setAll with empty array - clears repository", () => {
     const result = repository.get()
 
     expect(result.length).toEqual(0)
-});
+})

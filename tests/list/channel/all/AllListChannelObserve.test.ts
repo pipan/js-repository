@@ -1,6 +1,6 @@
 import 'ts-jest'
-import { ListChannel, Channels, SimpleChange, Change, Comparables } from '../../../../src';
-import { Adaptable } from '@wildebeest/observable';
+import { ListChannel, Channels, SimpleChange, Change, Comparables } from '../../../../src'
+import { Adaptable } from '@wildebeest/observable'
 
 class UniqueAdapter implements Adaptable<string, string> {
     public adapt (item: string): string {
@@ -24,7 +24,7 @@ test.each(instances)("(%#) empty channel - dispatch empty change - does not trig
     channel.dispatch(new SimpleChange([], []))
 
     expect(called).toBeFalsy()
-});
+})
 
 test.each(instances)("(%#) empty channel - dispatch insert - trigers connected function", (channelFactory) => {
     const channel: ListChannel<string> = channelFactory()
@@ -39,7 +39,7 @@ test.each(instances)("(%#) empty channel - dispatch insert - trigers connected f
     channel.dispatch(new SimpleChange(['test'], []))
 
     expect(called).toBeTruthy()
-});
+})
 
 test.each(instances)("(%#) filled channel - dispatch remove - triggers connected function", (channelFactory) => {
     const channel: ListChannel<string> = channelFactory(['test'])
@@ -53,4 +53,4 @@ test.each(instances)("(%#) filled channel - dispatch remove - triggers connected
     channel.dispatch(new SimpleChange([], ['test']))
 
     expect(called).toBeTruthy()
-});
+})

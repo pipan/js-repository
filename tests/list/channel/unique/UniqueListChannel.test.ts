@@ -1,6 +1,6 @@
 import 'ts-jest'
-import { ListChannel, Channels, SimpleChange } from '../../../../src';
-import { Adaptable } from '@wildebeest/observable';
+import { ListChannel, Channels, SimpleChange } from '../../../../src'
+import { Adaptable } from '@wildebeest/observable'
 
 class Entity {
     public id: string
@@ -29,7 +29,7 @@ test("empty channel - dispatch insert with the same key - returns array with the
 
     expect(result.length).toEqual(1)
     expect(result[0].name).toEqual('value')
-});
+})
 
 test("empty channel - dispatch remove by instance - removes item", () => {
     const channel: ListChannel<Entity> = Channels.createUniqueList(new UniqueEntityAdapter())
@@ -41,7 +41,7 @@ test("empty channel - dispatch remove by instance - removes item", () => {
     const result: Array<Entity> = channel.get()
 
     expect(result.length).toEqual(0)
-});
+})
 
 test("empty channel - dispatch remove by id - removes item", () => {
     const channel: ListChannel<Entity> = Channels.createUniqueList(new UniqueEntityAdapter())
@@ -52,4 +52,4 @@ test("empty channel - dispatch remove by id - removes item", () => {
     const result: Array<Entity> = channel.get()
 
     expect(result.length).toEqual(0)
-});
+})

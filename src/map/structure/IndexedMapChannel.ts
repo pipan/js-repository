@@ -6,8 +6,9 @@ import { FromMapEntryAdapter } from "../adapter/FromMapEntryAdaper"
 import { ToMapEntryAdapter } from "../adapter/ToMapEntryAdapter"
 import { MapEntry } from "../MapEntry"
 import { SimpleMapChannel } from "./SimpleMapChannel"
+import { IdentifiableMapChannel } from "./IdentifiableMapChannel"
 
-export class IndexedMapChannel<T, U> implements Channel<Change<U>> {
+export class IndexedMapChannel<T, U> implements IdentifiableMapChannel<T, U> {
     private mapChannel: MapChannel<T, U>
     private channel: Channel<Change<U>>
     private toEntryAdapter: Adaptable<Change<U>, Change<MapEntry<T, U>>>

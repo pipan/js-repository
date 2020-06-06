@@ -1,6 +1,6 @@
 import 'ts-jest'
-import { Repository, SimpleRepository } from '../../src';
-import { Identifiable } from '../../src/identify/Identifiable';
+import { Repository, SimpleRepository } from '../../src'
+import { Identifiable } from '../../src/identify/Identifiable'
 
 class Entity implements Identifiable {
     public id: string
@@ -26,7 +26,7 @@ test("empty repositar - query list and connect - callback is called with empty a
         })
 
     expect(result).toEqual([])
-});
+})
 
 test("filled repositar - query list and connect - callback is called with filled array", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -39,7 +39,7 @@ test("filled repositar - query list and connect - callback is called with filled
         })
 
     expect(result.length).toEqual(1)
-});
+})
 
 test("filled repositar - query list - array is not ordered", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -55,7 +55,7 @@ test("filled repositar - query list - array is not ordered", () => {
     expect(result.length).toEqual(2)
     expect(result[0].name).toEqual('test')
     expect(result[1].name).toEqual('abc')
-});
+})
 
 test("filled repositar - query ordered list - array is ordered", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -72,7 +72,7 @@ test("filled repositar - query ordered list - array is ordered", () => {
     expect(result.length).toEqual(2)
     expect(result[0].name).toEqual('abc')
     expect(result[1].name).toEqual('test')
-});
+})
 
 test("query list - insert item - calls callback", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -86,7 +86,7 @@ test("query list - insert item - calls callback", () => {
     repository.insert(new Entity('1', 'test'))
 
     expect(result.length).toEqual(1)
-});
+})
 
 test("query filtered list - insert item filtered out - does not call callback", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -101,7 +101,7 @@ test("query filtered list - insert item filtered out - does not call callback", 
     repository.insert(new Entity('1', 'test'))
 
     expect(result.length).toEqual(0)
-});
+})
 
 test("query filtered list - insert item within filter - calls callback", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -116,7 +116,7 @@ test("query filtered list - insert item within filter - calls callback", () => {
     repository.insert(new Entity('1', 'only'))
 
     expect(result.length).toEqual(1)
-});
+})
 
 test("query list - replace item - calls callback", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -132,7 +132,7 @@ test("query list - replace item - calls callback", () => {
 
     expect(result.length).toEqual(1)
     expect(result[0].name).toEqual('value')
-});
+})
 
 test("query list - remove item - calls callback", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -147,7 +147,7 @@ test("query list - remove item - calls callback", () => {
     repository.remove(new Entity('1', 'value'))
 
     expect(result.length).toEqual(0)
-});
+})
 
 test("query list - clear - calls callback", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
@@ -162,4 +162,4 @@ test("query list - clear - calls callback", () => {
     repository.clear()
 
     expect(result.length).toEqual(0)
-});
+})

@@ -1,5 +1,5 @@
 import 'ts-jest'
-import { Channels, MapChannel, MapEntry, SimpleChange, Change } from '../../../../src';
+import { Channels, MapChannel, MapEntry, SimpleChange, Change } from '../../../../src'
 
 const instances: any = [
     [() => { return Channels.createMap() }]
@@ -16,7 +16,7 @@ test.each(instances)("(%#) empty channel - dispatch empty change - does not trig
     channel.dispatch(new SimpleChange([], []))
 
     expect(called).toBeFalsy()
-});
+})
 
 test.each(instances)("(%#) empty channel - dispatch insert - triggers change callback", (channeLFactory) => {
     const channel: MapChannel<string, string> = channeLFactory()
@@ -31,7 +31,7 @@ test.each(instances)("(%#) empty channel - dispatch insert - triggers change cal
     channel.dispatch(new SimpleChange([new MapEntry('key', 'value')], []))
 
     expect(called).toBeTruthy()
-});
+})
 
 test.each(instances)("(%#) filled channel - dispatch insert same key - triggers change callback", (channeLFactory) => {
     const channel: MapChannel<string, string> = channeLFactory()
@@ -48,7 +48,7 @@ test.each(instances)("(%#) filled channel - dispatch insert same key - triggers 
     channel.dispatch(new SimpleChange([new MapEntry('key', 'newValue')], []))
 
     expect(called).toBeTruthy()
-});
+})
 
 test.each(instances)("(%#) filled channel - dispatch insert same key same value - does not triggers change callback", (channeLFactory) => {
     const channel: MapChannel<string, string> = channeLFactory()
@@ -63,7 +63,7 @@ test.each(instances)("(%#) filled channel - dispatch insert same key same value 
     channel.dispatch(new SimpleChange([new MapEntry('key', 'value')], []))
 
     expect(called).toBeFalsy()
-});
+})
 
 test.each(instances)("(%#) filled channel - dispatch remove existing key - triggers change callback", (channeLFactory) => {
     const channel: MapChannel<string, string> = channeLFactory()
@@ -80,7 +80,7 @@ test.each(instances)("(%#) filled channel - dispatch remove existing key - trigg
     channel.dispatch(new SimpleChange([], [new MapEntry('key', 'value')]))
 
     expect(called).toBeTruthy()
-});
+})
 
 test.each(instances)("(%#) filled channel - dispatch remove non-existing key - does not triggers change callback", (channeLFactory) => {
     const channel: MapChannel<string, string> = channeLFactory()
@@ -95,4 +95,4 @@ test.each(instances)("(%#) filled channel - dispatch remove non-existing key - d
     channel.dispatch(new SimpleChange([], [new MapEntry('lala', 'value')]))
 
     expect(called).toBeFalsy()
-});
+})

@@ -1,5 +1,5 @@
 import 'ts-jest'
-import { ListChannel, Channels, SimpleChange, Change, Comparables } from '../../../../src';
+import { ListChannel, Channels, SimpleChange, Change, Comparables } from '../../../../src'
 
 const instances: any = [
     [(values: Array<string> = []) => { return Channels.createList(values) }],
@@ -18,7 +18,7 @@ test.each(instances)("(%#) filled channel with two same items - dispatch remove 
     channel.dispatch(new SimpleChange([], ['test']))
 
     expect(called).toBeTruthy()
-});
+})
 
 test.each(instances)("(%#) filled channel - dispatch insert with same value - triggers connected function", (channelFactory) => {
     const channel: ListChannel<string> = channelFactory(['test'])
@@ -33,4 +33,4 @@ test.each(instances)("(%#) filled channel - dispatch insert with same value - tr
     channel.dispatch(new SimpleChange(['test'], []))
 
     expect(called).toBeTruthy()
-});
+})

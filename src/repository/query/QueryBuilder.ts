@@ -7,17 +7,21 @@ import { ListChannel } from "../../list/structure/ListChannel";
 import { Comparables } from "../../Comparables";
 import { PropertyQueryResult } from "./PropertyQueryResult";
 import { Pipable, Pipe } from "@wildebeest/observable";
+import { MapQueryResult } from "./MapQueryResult";
+import { ObjectPropertyAdapter } from "../adapter/ObjectPropertyAdapter";
 
 export class QueryBuilder<T> {
     private filters: Array<Pipable<Change<T>>>
     private orderKey: string
     private orderDirection: string
+    private indexName: string
     private source: ListChannel<T>
     private operations: Map<string, (key: string, value: any) => Pipable<Change<T>>>
 
     public constructor (source: ListChannel<T>) {
         this.source = source
         this.filters = []
+        this.indexName = 'identify'
 
         this.operations = new Map()
         this.operations.set('=', (key: string, value: any) => {
@@ -41,13 +45,13 @@ export class QueryBuilder<T> {
         return this
     }
 
-    public groupBy (propertyName: string): QueryBuilder<T> {
+    // public groupBy (propertyName: string): QueryBuilder<T> {
         // todo
-        return this
-    }
+        // return this
+    // }
 
     public indexBy (propertyName: string): QueryBuilder<T> {
-        // todo 
+        this.indexName = propertyName
         return this
     }
 
@@ -74,6 +78,14 @@ export class QueryBuilder<T> {
             new Pipe([
                 new PropertyEqualsFilter('identify', identityValue)
             ])
+        )
+    }
+
+    public map<U> (): QueryResult<Map<U, T>> {
+        return new MapQueryResult(
+            this.source,
+            Channels.createIndexedMap(new ObjectPropertyAdapter(this.indexName)),
+            new Pipe(this.filters)
         )
     }
 }

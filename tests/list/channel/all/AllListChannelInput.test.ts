@@ -1,5 +1,5 @@
 import 'ts-jest'
-import { ListChannel, Channels, SimpleChange, Comparables } from '../../../../src';
+import { ListChannel, Channels, SimpleChange, Comparables } from '../../../../src'
 
 const instances: any = [
     [(values: Array<string> = []) => { return Channels.createList(values) }],
@@ -14,7 +14,7 @@ test.each(instances)("empty channel - dispatch insert - returns filled array", (
     const result: Array<string> = channel.get()
 
     expect(result.length).toEqual(1)
-});
+})
 
 test.each(instances)("filled channel - dispatch insert with same value - returns changed array", (channelFactory) => {
     const channel: ListChannel<string> = channelFactory(['test'])
@@ -24,7 +24,7 @@ test.each(instances)("filled channel - dispatch insert with same value - returns
     const result: Array<string> = channel.get()
 
     expect(result.length).toEqual(2)
-});
+})
 
 test.each(instances)("filled channel - dispatch remove - returns empty array", (channelFactory) => {
     const channel: ListChannel<string> = channelFactory(['test'])
@@ -34,7 +34,7 @@ test.each(instances)("filled channel - dispatch remove - returns empty array", (
     const result: Array<string> = channel.get()
 
     expect(result.length).toEqual(0)
-});
+})
 
 test.each(instances)("filled channel with two same items - dispatch remove - removes one item", (channelFactory) => {
     const channel: ListChannel<string> = channelFactory(['test', 'test'])
@@ -44,4 +44,4 @@ test.each(instances)("filled channel with two same items - dispatch remove - rem
     const result: Array<string> = channel.get()
 
     expect(result.length).toEqual(1)
-});
+})
