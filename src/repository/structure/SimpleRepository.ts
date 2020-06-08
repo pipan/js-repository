@@ -5,6 +5,8 @@ import { IdentityAdapter } from "../../identify/IdentityAdapter";
 import { ListChannel } from "../../list/structure/ListChannel";
 import { SimpleChange } from "../../change/SimpleChange";
 import { QueryBuilder } from "../query/QueryBuilder";
+import { Closable, Dispatchable } from "@wildebeest/observable";
+import { Change } from "../../change/Change";
 
 export class SimpleRepository<T extends Identifiable> implements Repository<T> {
     private source: ListChannel<T>
@@ -19,6 +21,18 @@ export class SimpleRepository<T extends Identifiable> implements Repository<T> {
 
     public get (): Array<T> {
         return this.source.get()
+    }
+
+    public connect (dispatcher: Dispatchable<Change<T>>): Closable {
+        return this.source.connect(dispatcher)
+    }
+
+    public connectFn (fn: (item: Change<T>) => void): Closable {
+        return this.source.connectFn(fn)
+    }
+
+    public disconnect (dispatcher: Dispatchable<Change<T>>): void {
+        this.source.disconnect(dispatcher)
     }
 
     public insert (item: T): void {
