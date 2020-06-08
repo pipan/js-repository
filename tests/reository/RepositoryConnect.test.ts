@@ -31,7 +31,7 @@ test("empty repositary - insert item - trigers change callback", () => {
     expect(called).toBeTruthy()
 })
 
-test("empty repositary - remove item - trigers change callback", () => {
+test("filled repositary - remove item - trigers change callback", () => {
     const repository: Repository<Entity> = new SimpleRepository() 
     repository.insert(new Entity('1', 'test'))
 

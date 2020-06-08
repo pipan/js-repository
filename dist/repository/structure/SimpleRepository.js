@@ -14,6 +14,15 @@ var SimpleRepository = (function () {
     SimpleRepository.prototype.get = function () {
         return this.source.get();
     };
+    SimpleRepository.prototype.connect = function (dispatcher) {
+        return this.source.connect(dispatcher);
+    };
+    SimpleRepository.prototype.connectFn = function (fn) {
+        return this.source.connectFn(fn);
+    };
+    SimpleRepository.prototype.disconnect = function (dispatcher) {
+        this.source.disconnect(dispatcher);
+    };
     SimpleRepository.prototype.insert = function (item) {
         this.insertAll([item]);
     };
