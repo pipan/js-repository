@@ -7,21 +7,12 @@ import { SimpleChange } from "../../change/SimpleChange";
 import { QueryBuilder } from "../query/QueryBuilder";
 import { Closable, Dispatchable } from "@wildebeest/observable";
 import { Change } from "../../change/Change";
-import { KeyIdentityAdapter } from "../../identify/KeyIdentityAdapter";
 
-export class SimpleRepository<T> implements Repository<T> {
+export class IdentifiableRepository<T extends Identifiable> implements Repository<T> {
     private source: ListChannel<T>
 
-    public constructor (source: ListChannel<T>) {
-        this.source = source
-    }
-
-    public static createIdentifiable<T extends Identifiable> (): Repository<T> {
-        return new SimpleRepository(Channels.createUniqueList(new IdentityAdapter()))
-    }
-
-    public static fromKeyProperty<T> (key: string): Repository<T> {
-        return new SimpleRepository(Channels.createUniqueList(new KeyIdentityAdapter(key)))
+    public constructor () {
+        this.source = Channels.createUniqueList(new IdentityAdapter())
     }
 
     public query (): QueryBuilder<T> {

@@ -17,7 +17,7 @@ class Entity implements Identifiable {
 }
 
 test("empty repositar - insert item - adds one item to repository", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
 
     const result = repository.get()
@@ -26,7 +26,7 @@ test("empty repositar - insert item - adds one item to repository", () => {
 })
 
 test("empty repositar - insert all items - adds two items to repository", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insertAll([
         new Entity('1', 'test'),
         new Entity('2', 'test')
@@ -38,7 +38,7 @@ test("empty repositar - insert all items - adds two items to repository", () => 
 })
 
 test("empty repositar - insert all items same id - adds last item to repository", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insertAll([
         new Entity('1', 'one'),
         new Entity('1', 'two')
@@ -52,7 +52,7 @@ test("empty repositar - insert all items same id - adds last item to repository"
 
 test("filled repositar - remove item by reference - removes first item", () => {
     const item: Entity = new Entity('1', 'one')
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insertAll([
         item,
         new Entity('2', 'two')
@@ -66,7 +66,7 @@ test("filled repositar - remove item by reference - removes first item", () => {
 })
 
 test("filled repositar - remove item by identity - removes first item", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insertAll([
         new Entity('1', 'one'),
         new Entity('2', 'two')
@@ -80,7 +80,7 @@ test("filled repositar - remove item by identity - removes first item", () => {
 })
 
 test("filled repositar - remove all items by identity - removes all items", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insertAll([
         new Entity('1', 'one'),
         new Entity('2', 'two')
@@ -97,7 +97,7 @@ test("filled repositar - remove all items by identity - removes all items", () =
 })
 
 test("filled repositar - remove all items including non existing - removes all existing items", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insertAll([
         new Entity('1', 'one'),
         new Entity('2', 'two')
@@ -115,7 +115,7 @@ test("filled repositar - remove all items including non existing - removes all e
 })
 
 test("filled repositar - clear - removes all items", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insertAll([
         new Entity('1', 'one'),
         new Entity('2', 'two')
@@ -129,7 +129,7 @@ test("filled repositar - clear - removes all items", () => {
 })
 
 test("filled repositar - setAll - sets all values to new list", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insertAll([
         new Entity('1', 'one'),
         new Entity('2', 'two')
@@ -145,7 +145,7 @@ test("filled repositar - setAll - sets all values to new list", () => {
 })
 
 test("filled repositar - setAll with empty array - clears repository", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insertAll([
         new Entity('1', 'one'),
         new Entity('2', 'two')

@@ -17,7 +17,7 @@ class Entity implements Identifiable {
 }
 
 test("empty repositary - insert item - trigers change callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let called = false 
     repository.connectFn((change: Change<Entity>) => {
@@ -32,7 +32,7 @@ test("empty repositary - insert item - trigers change callback", () => {
 })
 
 test("filled repositary - remove item - trigers change callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
 
     let called = false 
