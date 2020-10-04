@@ -6,7 +6,8 @@ import { Closable, Dispatchable } from "@wildebeest/observable";
 import { Change } from "../../change/Change";
 export declare class SimpleRepository<T> implements Repository<T> {
     private source;
-    constructor(source: ListChannel<T>);
+    private identityIndex;
+    constructor(source: ListChannel<T>, identityIndex: string);
     static createIdentifiable<T extends Identifiable>(): Repository<T>;
     static fromKeyProperty<T>(key: string): Repository<T>;
     query(): QueryBuilder<T>;

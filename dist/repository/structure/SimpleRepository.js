@@ -6,17 +6,18 @@ var SimpleChange_1 = require("../../change/SimpleChange");
 var QueryBuilder_1 = require("../query/QueryBuilder");
 var KeyIdentityAdapter_1 = require("../../identify/KeyIdentityAdapter");
 var SimpleRepository = (function () {
-    function SimpleRepository(source) {
+    function SimpleRepository(source, identityIndex) {
         this.source = source;
+        this.identityIndex = identityIndex;
     }
     SimpleRepository.createIdentifiable = function () {
-        return new SimpleRepository(Channels_1.Channels.createUniqueList(new IdentityAdapter_1.IdentityAdapter()));
+        return new SimpleRepository(Channels_1.Channels.createUniqueList(new IdentityAdapter_1.IdentityAdapter()), 'identify');
     };
     SimpleRepository.fromKeyProperty = function (key) {
-        return new SimpleRepository(Channels_1.Channels.createUniqueList(new KeyIdentityAdapter_1.KeyIdentityAdapter(key)));
+        return new SimpleRepository(Channels_1.Channels.createUniqueList(new KeyIdentityAdapter_1.KeyIdentityAdapter(key)), key);
     };
     SimpleRepository.prototype.query = function () {
-        return new QueryBuilder_1.QueryBuilder(this.source);
+        return new QueryBuilder_1.QueryBuilder(this.source, this.identityIndex);
     };
     SimpleRepository.prototype.get = function () {
         return this.source.get();

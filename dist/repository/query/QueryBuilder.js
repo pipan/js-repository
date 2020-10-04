@@ -9,10 +9,11 @@ var observable_1 = require("@wildebeest/observable");
 var MapQueryResult_1 = require("./MapQueryResult");
 var ObjectPropertyAdapter_1 = require("../adapter/ObjectPropertyAdapter");
 var QueryBuilder = (function () {
-    function QueryBuilder(source) {
+    function QueryBuilder(source, propertyIndexName) {
         this.source = source;
         this.filters = [];
         this.indexName = 'identify';
+        this.propertyIndexName = propertyIndexName;
         this.operations = new Map();
         this.operations.set('=', function (key, value) {
             return new PropertyEqualsFilter_1.PropertyEqualsFilter(key, value);
@@ -47,7 +48,7 @@ var QueryBuilder = (function () {
     };
     QueryBuilder.prototype.property = function (identityValue) {
         return new PropertyQueryResult_1.PropertyQueryResult(this.source, new observable_1.Pipe([
-            new PropertyEqualsFilter_1.PropertyEqualsFilter('identify', identityValue)
+            new PropertyEqualsFilter_1.PropertyEqualsFilter(this.propertyIndexName, identityValue)
         ]));
     };
     QueryBuilder.prototype.map = function () {
