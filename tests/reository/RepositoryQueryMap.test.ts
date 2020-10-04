@@ -17,7 +17,7 @@ class Entity implements Identifiable {
 }
 
 test("empty repositar - query map - callback is called with empty map", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Map<string, Entity> = null
     repository.query().map()
@@ -29,7 +29,7 @@ test("empty repositar - query map - callback is called with empty map", () => {
 })
 
 test("filled repositar - query map - callback is called with filled map", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
 
     let result: Map<string, Entity> = null
@@ -43,7 +43,7 @@ test("filled repositar - query map - callback is called with filled map", () => 
 })
 
 test("filled repositar - query map - multiple items", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
     repository.insert(new Entity('2', 'abc'))
 
@@ -59,7 +59,7 @@ test("filled repositar - query map - multiple items", () => {
 })
 
 test("query map - insert item - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Map<string, Entity> = null
     repository.query().map()
@@ -73,7 +73,7 @@ test("query map - insert item - calls callback", () => {
 })
 
 test("query filtered map - insert item filtered out - does not call callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Map<string, Entity> = null
     repository.query().filter('name', '=', 'only')
@@ -88,7 +88,7 @@ test("query filtered map - insert item filtered out - does not call callback", (
 })
 
 test("query filtered map - insert item within filter - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Map<string, Entity> = null
     repository.query().filter('name', '=', 'only')
@@ -103,7 +103,7 @@ test("query filtered map - insert item within filter - calls callback", () => {
 })
 
 test("query map - replace item - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
 
     let result: Map<string, Entity> = null
@@ -119,7 +119,7 @@ test("query map - replace item - calls callback", () => {
 })
 
 test("query map - remove item - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
 
     let result: Map<string, Entity> = null
@@ -134,7 +134,7 @@ test("query map - remove item - calls callback", () => {
 })
 
 test("query map - clear - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
 
     let result: Map<string, Entity> = null

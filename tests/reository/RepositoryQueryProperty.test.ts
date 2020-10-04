@@ -17,7 +17,7 @@ class Entity implements Identifiable {
 }
 
 test("query property - empty repository - result undefined", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Entity = null
     repository.query().property('1')
@@ -29,7 +29,7 @@ test("query property - empty repository - result undefined", () => {
 })
 
 test("query property - insert item - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Entity = null
     repository.query().property('1')
@@ -43,7 +43,7 @@ test("query property - insert item - calls callback", () => {
 })
 
 test("query property - replace item - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository()
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable()
     repository.insert(new Entity('1', 'test'))
 
     let result: Entity = null
@@ -58,7 +58,7 @@ test("query property - replace item - calls callback", () => {
 })
 
 test("query property - remove item - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository()
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable()
     repository.insert(new Entity('1', 'test'))
 
     let result: Entity = null
@@ -73,7 +73,7 @@ test("query property - remove item - calls callback", () => {
 })
 
 test("query property - insert item with different id - does not call callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository()
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable()
     repository.insert(new Entity('1', 'test'))
 
     let result: Entity = null
@@ -88,7 +88,7 @@ test("query property - insert item with different id - does not call callback", 
 })
 
 test("query property - remove item with different id - does not call callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository()
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable()
     repository.insert(new Entity('1', 'test'))
     repository.insert(new Entity('2', 'two'))
 

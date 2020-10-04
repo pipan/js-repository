@@ -17,7 +17,7 @@ class Entity implements Identifiable {
 }
 
 test("empty repositar - query list and connect - callback is called with empty array", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Array<Entity> = null
     repository.query().list()
@@ -29,7 +29,7 @@ test("empty repositar - query list and connect - callback is called with empty a
 })
 
 test("filled repositar - query list and connect - callback is called with filled array", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable()
     repository.insert(new Entity('1', 'test'))
 
     let result: Array<Entity> = null
@@ -42,7 +42,7 @@ test("filled repositar - query list and connect - callback is called with filled
 })
 
 test("filled repositar - query list - array is not ordered", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
     repository.insert(new Entity('2', 'abc'))
 
@@ -58,7 +58,7 @@ test("filled repositar - query list - array is not ordered", () => {
 })
 
 test("filled repositar - query ordered list - array is ordered", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
     repository.insert(new Entity('2', 'abc'))
 
@@ -74,8 +74,25 @@ test("filled repositar - query ordered list - array is ordered", () => {
     expect(result[1].name).toEqual('test')
 })
 
+test("filled repositar - query ordered list by method - array is ordered", () => {
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
+    repository.insert(new Entity('300', 'test'))
+    repository.insert(new Entity('2', 'abc'))
+
+    let result: Array<Entity> = null
+    repository.query().orderBy('identify')
+        .list()
+        .connectFn((value: Array<Entity>) => {
+            result = value
+        })
+
+    expect(result.length).toEqual(2)
+    expect(result[0].name).toEqual('abc')
+    expect(result[1].name).toEqual('test')
+})
+
 test("query list - insert item - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Array<Entity> = null
     repository.query().list()
@@ -89,7 +106,7 @@ test("query list - insert item - calls callback", () => {
 })
 
 test("query filtered list - insert item filtered out - does not call callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Array<Entity> = null
     repository.query().filter('name', '=', 'only')
@@ -104,7 +121,7 @@ test("query filtered list - insert item filtered out - does not call callback", 
 })
 
 test("query filtered list - insert item within filter - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
 
     let result: Array<Entity> = null
     repository.query().filter('name', '=', 'only')
@@ -119,7 +136,7 @@ test("query filtered list - insert item within filter - calls callback", () => {
 })
 
 test("query list - replace item - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
 
     let result: Array<Entity> = null
@@ -135,7 +152,7 @@ test("query list - replace item - calls callback", () => {
 })
 
 test("query list - remove item - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
 
     let result: Array<Entity> = null
@@ -150,7 +167,7 @@ test("query list - remove item - calls callback", () => {
 })
 
 test("query list - clear - calls callback", () => {
-    const repository: Repository<Entity> = new SimpleRepository() 
+    const repository: Repository<Entity> = SimpleRepository.createIdentifiable() 
     repository.insert(new Entity('1', 'test'))
 
     let result: Array<Entity> = null
