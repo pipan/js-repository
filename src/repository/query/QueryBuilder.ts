@@ -15,13 +15,15 @@ export class QueryBuilder<T> {
     private orderKey: string
     private orderDirection: string
     private indexName: string
+    private propertyIndexName: string
     private source: ListChannel<T>
     private operations: Map<string, (key: string, value: any) => Pipable<Change<T>>>
 
-    public constructor (source: ListChannel<T>) {
+    public constructor (source: ListChannel<T>, propertyIndexName: string) {
         this.source = source
         this.filters = []
         this.indexName = 'identify'
+        this.propertyIndexName = propertyIndexName
 
         this.operations = new Map()
         this.operations.set('=', (key: string, value: any) => {
@@ -76,7 +78,7 @@ export class QueryBuilder<T> {
         return new PropertyQueryResult(
             this.source,
             new Pipe([
-                new PropertyEqualsFilter('identify', identityValue)
+                new PropertyEqualsFilter(this.propertyIndexName, identityValue)
             ])
         )
     }

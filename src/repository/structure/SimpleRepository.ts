@@ -11,21 +11,23 @@ import { KeyIdentityAdapter } from "../../identify/KeyIdentityAdapter";
 
 export class SimpleRepository<T> implements Repository<T> {
     private source: ListChannel<T>
+    private identityIndex: string
 
-    public constructor (source: ListChannel<T>) {
+    public constructor (source: ListChannel<T>, identityIndex: string) {
         this.source = source
+        this.identityIndex = identityIndex
     }
 
     public static createIdentifiable<T extends Identifiable> (): Repository<T> {
-        return new SimpleRepository(Channels.createUniqueList(new IdentityAdapter()))
+        return new SimpleRepository(Channels.createUniqueList(new IdentityAdapter()), 'identify')
     }
 
     public static fromKeyProperty<T> (key: string): Repository<T> {
-        return new SimpleRepository(Channels.createUniqueList(new KeyIdentityAdapter(key)))
+        return new SimpleRepository(Channels.createUniqueList(new KeyIdentityAdapter(key)), key)
     }
 
     public query (): QueryBuilder<T> {
-        return new QueryBuilder(this.source)
+        return new QueryBuilder(this.source, this.identityIndex)
     }
 
     public get (): Array<T> {
