@@ -1,14 +1,11 @@
 import { Identifiable } from "../../identify/Identifiable";
 import { Repository } from "./Repository";
-import { ListChannel } from "../../list/structure/ListChannel";
 import { QueryBuilder } from "../query/QueryBuilder";
 import { Closable, Dispatchable } from "@wildebeest/observable";
 import { Change } from "../../change/Change";
-export declare class SimpleRepository<T> implements Repository<T> {
+export declare class IdentifiableRepository<T extends Identifiable> implements Repository<T> {
     private source;
-    constructor(source: ListChannel<T>);
-    static createIdentifiable<T extends Identifiable>(): Repository<T>;
-    static fromKeyProperty<T>(key: string): Repository<T>;
+    constructor();
     query(): QueryBuilder<T>;
     get(): Array<T>;
     connect(dispatcher: Dispatchable<Change<T>>): Closable;
