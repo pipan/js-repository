@@ -1,14 +1,15 @@
 import { QueryResult } from "./QueryResult";
 import { ListChannel } from "../../list/structure/ListChannel";
+import { Adaptable } from "@wildebeest/observable";
 export declare class QueryBuilder<T> {
     private filters;
     private orderKey;
     private orderDirection;
     private indexName;
-    private propertyIndexName;
+    private propertyIndexAdapter;
     private source;
     private operations;
-    constructor(source: ListChannel<T>, propertyIndexName: string);
+    constructor(source: ListChannel<T>, propertyIndexAdapter: Adaptable<any, string>);
     filter(propertyName: string, operation: string, value: any): QueryBuilder<T>;
     orderBy(propertyName: string, direction?: string): QueryBuilder<T>;
     indexBy(propertyName: string): QueryBuilder<T>;
