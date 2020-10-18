@@ -3,13 +3,17 @@ import { SimpleChange } from "../../change/SimpleChange"
 import { ObjectPropertyAdapter } from "../adapter/ObjectPropertyAdapter"
 import { Adaptable, Pipable } from "@wildebeest/observable"
 
-export class PropertyEqualsFilter implements Pipable<Change<any>> {
+export class AdapterEqualsFilter implements Pipable<Change<any>> {
     private adapter: Adaptable<any, any>
     private value: any
 
-    public constructor (key: string, value: any) {
-        this.adapter = new ObjectPropertyAdapter(key)
+    public constructor (adapter: Adaptable<any, string>, value: any) {
+        this.adapter = adapter
         this.value = value
+    }
+
+    public static fromPropertyName (key: string, value: any): Pipable<Change<any>> {
+        return new AdapterEqualsFilter(new ObjectPropertyAdapter(key), value)
     }
     
     public execute (value: Change<any>): Change<any> {
