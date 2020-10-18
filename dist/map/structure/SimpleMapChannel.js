@@ -4,7 +4,7 @@ var observable_1 = require("@wildebeest/observable");
 var FilterMissingRemoved_1 = require("../filter/FilterMissingRemoved");
 var FilterDuplicateInsert_1 = require("../filter/FilterDuplicateInsert");
 var FilterDuplicateValue_1 = require("../filter/FilterDuplicateValue");
-var CreateRemoevEventForReplace_1 = require("../filter/CreateRemoevEventForReplace");
+var CreateRemoveEventForReplace_1 = require("../filter/CreateRemoveEventForReplace");
 var CorrectRemovedValue_1 = require("../filter/CorrectRemovedValue");
 var SimpleMapChannel = (function () {
     function SimpleMapChannel() {
@@ -15,7 +15,7 @@ var SimpleMapChannel = (function () {
             new CorrectRemovedValue_1.CorrectRemovedValue(this.state),
             new FilterDuplicateInsert_1.FilterDuplicateInsert(),
             new FilterDuplicateValue_1.FilterDuplicateValue(this.state),
-            new CreateRemoevEventForReplace_1.CreateRemoveEventForReplace(this.state)
+            new CreateRemoveEventForReplace_1.CreateRemoveEventForReplace(this.state)
         ]);
     }
     SimpleMapChannel.prototype.connect = function (dispatcher) {
