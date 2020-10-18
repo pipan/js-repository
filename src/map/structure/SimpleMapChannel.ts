@@ -4,7 +4,7 @@ import { MapEntry } from "../MapEntry";
 import { FilterMissingRemoved } from "../filter/FilterMissingRemoved";
 import { FilterDuplicateInsert } from "../filter/FilterDuplicateInsert";
 import { FilterDuplicateValue } from "../filter/FilterDuplicateValue";
-import { CreateRemoveEventForReplace } from "../filter/CreateRemoevEventForReplace";
+import { CreateRemoveEventForReplace } from "../filter/CreateRemoveEventForReplace";
 import { MapChannel } from "./MapChannel";
 import { CorrectRemovedValue } from "../filter/CorrectRemovedValue";
 

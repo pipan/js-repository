@@ -157,3 +157,14 @@ test("filled repositar - setAll with empty array - clears repository", () => {
 
     expect(result.length).toEqual(0)
 })
+
+test("filled repositar - setAll the same items - keeps same items", () => {
+    const repository: Repository<any> = SimpleRepository.fromString() 
+    repository.insertAll(['one', 'two'])
+
+    repository.setAll(['oen', 'two'])
+
+    const result = repository.get()
+
+    expect(result.length).toEqual(2)
+})
