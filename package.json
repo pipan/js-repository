@@ -1,6 +1,6 @@
 {
   "name": "@wildebeest/repository",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Data repository  to store values and notify selected queries after chane",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
