@@ -5,29 +5,38 @@ import { IdentityAdapter } from "../../identify/IdentityAdapter";
 import { ListChannel } from "../../list/structure/ListChannel";
 import { SimpleChange } from "../../change/SimpleChange";
 import { QueryBuilder } from "../query/QueryBuilder";
-import { Closable, Dispatchable } from "@wildebeest/observable";
+import { Closable, Dispatchable, Adaptable } from "@wildebeest/observable";
 import { Change } from "../../change/Change";
 import { KeyIdentityAdapter } from "../../identify/KeyIdentityAdapter";
+import { SlefIdentityAdapter } from "../../identify/SelfIdentityAdapter";
 
 export class SimpleRepository<T> implements Repository<T> {
     private source: ListChannel<T>
-    private identityIndex: string
+    private identityAdapter: Adaptable<any, string>
 
-    public constructor (source: ListChannel<T>, identityIndex: string) {
+    public constructor (source: ListChannel<T>, identityAdapter: Adaptable<any, string>) {
         this.source = source
-        this.identityIndex = identityIndex
+        this.identityAdapter = identityAdapter
     }
 
     public static createIdentifiable<T extends Identifiable> (): Repository<T> {
-        return new SimpleRepository(Channels.createUniqueList(new IdentityAdapter()), 'identify')
+        return SimpleRepository.withIndex(new IdentityAdapter())
     }
 
     public static fromKeyProperty<T> (key: string): Repository<T> {
-        return new SimpleRepository(Channels.createUniqueList(new KeyIdentityAdapter(key)), key)
+        return SimpleRepository.withIndex(new KeyIdentityAdapter(key))
+    }
+
+    public static fromString<T> (): Repository<T> {
+        return SimpleRepository.withIndex(new SlefIdentityAdapter())
+    }
+
+    public static withIndex<T> (adapter: Adaptable<any, string>): Repository<T> {
+        return new SimpleRepository(Channels.createUniqueList(adapter), adapter)
     }
 
     public query (): QueryBuilder<T> {
-        return new QueryBuilder(this.source, this.identityIndex)
+        return new QueryBuilder(this.source, this.identityAdapter)
     }
 
     public get (): Array<T> {
