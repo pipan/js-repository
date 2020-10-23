@@ -52,4 +52,10 @@ export class PropertyQueryResult<T> implements QueryResult<T>, Dispatchable<Chan
     public get (): T {
         return this.eager.get()
     }
+
+    public imidiate (): T {
+        const value = this.get()
+        this.close()
+        return value
+    }
 }

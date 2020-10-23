@@ -48,4 +48,10 @@ export class ListQueryResult<T> implements QueryResult<Array<T>>, Dispatchable<C
     public get (): Array<T> {
         return this.eager.get()
     }
+
+    public imidiate (): Array<T> {
+        const value = this.get()
+        this.close()
+        return value
+    }
 }

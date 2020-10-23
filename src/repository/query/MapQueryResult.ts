@@ -49,4 +49,10 @@ export class MapQueryResult<T, U> implements QueryResult<Map<T, U>>, Dispatchabl
     public get (): Map<T, U> {
         return this.eager.get()
     }
+
+    public imidiate (): Map<T, U> {
+        const value = this.get()
+        this.close()
+        return value
+    }
 }
