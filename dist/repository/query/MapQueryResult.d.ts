@@ -15,4 +15,5 @@ export declare class MapQueryResult<T, U> implements QueryResult<Map<T, U>>, Dis
     close(): void;
     dispatch(change: Change<U>): void;
     get(): Map<T, U>;
+    imidiate(): Map<T, U>;
 }

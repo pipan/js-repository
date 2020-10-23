@@ -36,6 +36,11 @@ var PropertyQueryResult = (function () {
     PropertyQueryResult.prototype.get = function () {
         return this.eager.get();
     };
+    PropertyQueryResult.prototype.imidiate = function () {
+        var value = this.get();
+        this.close();
+        return value;
+    };
     return PropertyQueryResult;
 }());
 exports.PropertyQueryResult = PropertyQueryResult;

@@ -34,6 +34,11 @@ var MapQueryResult = (function () {
     MapQueryResult.prototype.get = function () {
         return this.eager.get();
     };
+    MapQueryResult.prototype.imidiate = function () {
+        var value = this.get();
+        this.close();
+        return value;
+    };
     return MapQueryResult;
 }());
 exports.MapQueryResult = MapQueryResult;

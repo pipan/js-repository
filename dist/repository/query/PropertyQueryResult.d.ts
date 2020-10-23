@@ -13,4 +13,5 @@ export declare class PropertyQueryResult<T> implements QueryResult<T>, Dispatcha
     close(): void;
     dispatch(change: Change<T>): void;
     get(): T;
+    imidiate(): T;
 }

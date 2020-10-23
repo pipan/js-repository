@@ -14,4 +14,5 @@ export declare class ListQueryResult<T> implements QueryResult<Array<T>>, Dispat
     close(): void;
     dispatch(change: Change<T>): void;
     get(): Array<T>;
+    imidiate(): Array<T>;
 }

@@ -34,6 +34,11 @@ var ListQueryResult = (function () {
     ListQueryResult.prototype.get = function () {
         return this.eager.get();
     };
+    ListQueryResult.prototype.imidiate = function () {
+        var value = this.get();
+        this.close();
+        return value;
+    };
     return ListQueryResult;
 }());
 exports.ListQueryResult = ListQueryResult;
